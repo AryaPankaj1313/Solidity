@@ -1,0 +1,22 @@
+//SPDX-License-Identifier:MIT
+pragma solidity ^0.8.0;
+contract MyContract{
+  // state variable -- can be used inside the contract where ever
+   uint public favN=13;
+   string public myString = "Jshine";
+   bytes32 public myByte = "Jshine";// array 
+   address public myAddress = 0x5B38Da6a701c568545dCfcB03FcB875f56beddC4;
+
+// structure for user defined datatypes
+ struct myStruct{
+     uint256 myuint;
+     string myStr;
+ }
+ myStruct public mystruct = myStruct({myuint:6,myStr:"Jshine"});
+// local variable -- scope inside the function
+   function local() public pure returns(uint)
+   {
+       uint count=1;
+       return count;
+   }
+}
