@@ -1,0 +1,28 @@
+// SPDX-License-Identifier:MIT
+pragma solidity ^0.8.0;
+contract myMapping
+{
+    // mapping example
+    mapping(uint=> string) myMap;
+// mapping with structure
+   struct Book{
+       string bName;
+       string author;
+   }
+    mapping(uint=> Book) Books;
+   // nested mapping
+   mapping(address=> mapping(uint=> Book)) myBooks;
+    constructor() {
+        myMap[1] = "Adam";
+        myMap[2] = "julie";
+    }
+    function addBooks(uint _id,string memory _bName , string memory _author) public 
+    {
+        Books[_id] = Book(_bName,_author);
+    }
+    function nestedbooks(uint _id,string memory _bName , string memory _author) public 
+    {
+        myBooks[msg.sender][_id] = Book(_bName,_author);
+    }
+    
+}
