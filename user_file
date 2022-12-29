@@ -1,0 +1,38 @@
+//SPDX-License-Identifier:MIT;
+pragma solidity ^0.8.0;
+contract user
+{
+    address private user_add_1= 0xAb8483F64d9C6d1EcF9b849Ae677dD3315835cb2;
+    address private user_add_2=0x1aE0EA34a72D944a8C7603FfB3eC30a6669E454C;
+    address private user_add_3=0x78731D3Ca6b7E34aC0F824c42a7cC18A495cabaB ;
+    address private user_add_4= 0x5c6B0f7Bf3E7ce046039Bd8FABdfD3f9F5021678;
+    address private user_add_5=0x17F6AD8Ef982297579C203069C1DbfFE4348c372 ;
+    address private user_add_6= 0x03C6FcED478cBbC9a4FAB34eF9f40767739D1Ff7;
+    struct User
+    {
+     uint256  reading;
+     string  name;
+     address  con_add;
+    }
+    uint count = 0;
+    mapping (address=> User[]) public user_detail; 
+    function update_reading_1(address my_add,uint reading_U1,string memory name_U1) public
+    {   require(msg.sender == user_add_2|| msg.sender== user_add_1||msg.sender== user_add_3||msg.sender== user_add_4|| msg.sender== user_add_5|| msg.sender== user_add_6);
+        User memory user_2;
+        user_2.reading = reading_U1;
+        user_2.name = name_U1;
+        user_2.con_add = my_add;
+        user_detail[my_add].push(user_2);
+    }
+    function get_user_details(address get_address)public view returns(string memory,uint,address)
+    {
+        for(uint i=0;i<user_detail[get_address].length;i++)
+        {
+             string memory name_user= user_detail[get_address][i].name;
+             uint reading_user = user_detail[get_address][i].reading;
+             address user_address = user_detail[get_address][i].con_add;
+             return(name_user,reading_user,user_address);
+        }
+    }
+   
+}
